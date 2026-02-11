@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weighted Grade Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            width: 450px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #4ca1af;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #2c3e50;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f4f6f9;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .grade {
+            font-size: 26px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .score {
+            font-size: 18px;
+        }
+
+        small {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Weighted Final Grade Calculator</h2>
+
+    <form method="post" action="/predict">
+
+        <div class="input-group">
+            <label>Praktikum (20%)</label>
+            <input type="number" name="praktikum" min="0" max="100" required>
+        </div>
+
+        <div class="input-group">
+            <label>Tugas Besar (10%)</label>
+            <input type="number" name="tugas_besar" min="0" max="100" required>
+        </div>
+
+        <div class="input-group">
+            <label>Tugas (10%)</label>
+            <input type="number" name="tugas" min="0" max="100" required>
+        </div>
+
+        <div class="input-group">
+            <label>Quiz (10%)</label>
+            <input type="number" name="quiz" min="0" max="100" required>
+        </div>
+
+        <div class="input-group">
+            <label>UTS (25%)</label>
+            <input type="number" name="uts" min="0" max="100" required>
+        </div>
+
+        <div class="input-group">
+            <label>UAS (25%)</label>
+            <input type="number" name="uas" min="0" max="100" required>
+        </div>
+
+        <button type="submit">Calculate Final Grade</button>
+    </form>
+
+    {% if final_score %}
+    <div class="result">
+        <p class="score">Final Score: <strong>{{ final_score }}</strong></p>
+        <p>Grade: <span class="grade">{{ grade }}</span></p>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
